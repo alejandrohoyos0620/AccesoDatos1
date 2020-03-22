@@ -1,0 +1,20 @@
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ControladorApp1.dll
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ControladorApp1.pdb
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ContratoAccesoDatos1.dll
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ContratosControladorApp1.dll
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ContratoAccesoDatos1.pdb
+C:\Users\Usuario\source\repos\ControladorApp1\bin\Debug\ContratosControladorApp1.pdb
+C:\Users\Usuario\source\repos\ControladorApp1\obj\Debug\ControladorApp1.csprojAssemblyReference.cache
+C:\Users\Usuario\source\repos\ControladorApp1\obj\Debug\ControladorApp1.csproj.CopyComplete
+C:\Users\Usuario\source\repos\ControladorApp1\obj\Debug\ControladorApp1.dll
+C:\Users\Usuario\source\repos\ControladorApp1\obj\Debug\ControladorApp1.pdb
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ControladorApp1.dll
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ControladorApp1.pdb
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ContratoAccesoDatos1.dll
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ContratosControladorApp1.dll
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ContratoAccesoDatos1.pdb
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\bin\Debug\ContratosControladorApp1.pdb
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\obj\Debug\ControladorApp1.csprojAssemblyReference.cache
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\obj\Debug\ControladorApp1.csproj.CopyComplete
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\obj\Debug\ControladorApp1.dll
+D:\Documentos\SW2\Protecto petServices\ControladorApp1\obj\Debug\ControladorApp1.pdb

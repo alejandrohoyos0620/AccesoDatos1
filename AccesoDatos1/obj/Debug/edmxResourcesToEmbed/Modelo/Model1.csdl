@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="petServicesModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="calificacione">
+    <Key>
+      <PropertyRef Name="id_calificacion" />
+    </Key>
+    <Property Name="id_calificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_servicio" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="calificacion" Type="Int32" Nullable="false" />
+    <Property Name="comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK_calificaciones_cliente" FromRole="calificaciones" ToRole="cliente" />
+    <NavigationProperty Name="servicio" Relationship="Self.FK_calificaciones_servicios" FromRole="calificaciones" ToRole="servicios" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="calificaciones" Relationship="Self.FK_calificaciones_cliente" FromRole="cliente" ToRole="calificaciones" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_cliente_usuario" FromRole="cliente" ToRole="usuarios" />
+    <NavigationProperty Name="mascotas" Relationship="Self.FK_mascotas_dueñoCL" FromRole="cliente" ToRole="mascotas" />
+    <NavigationProperty Name="reservas" Relationship="Self.FK_reserva_cliente" FromRole="cliente" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="mascota">
+    <Key>
+      <PropertyRef Name="id_mascota" />
+    </Key>
+    <Property Name="id_dueño" Type="Int32" Nullable="false" />
+    <Property Name="id_mascota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_mascota" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="raza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pdf_canet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK_mascotas_dueñoCL" FromRole="mascotas" ToRole="cliente" />
+    <NavigationProperty Name="reservaServicoes" Relationship="Self.FK_reservaServico_mascota" FromRole="mascotas" ToRole="reservaServico" />
+  </EntityType>
+  <EntityType Name="reserva">
+    <Key>
+      <PropertyRef Name="id_reservacion" />
+    </Key>
+    <Property Name="id_reservacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_reservaservicio" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="total" Type="Int32" Nullable="false" />
+    <Property Name="estadoreserva" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="tipopago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="factura" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK_reserva_cliente" FromRole="reserva" ToRole="cliente" />
+    <NavigationProperty Name="reservaServico" Relationship="Self.FK_reserva_reservaServicio" FromRole="reserva" ToRole="reservaServico" />
+  </EntityType>
+  <EntityType Name="reservaServico">
+    <Key>
+      <PropertyRef Name="id_reservaservicio" />
+    </Key>
+    <Property Name="id_reservaservicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_servicio" Type="Int32" Nullable="false" />
+    <Property Name="id_mascota" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mascota" Relationship="Self.FK_reservaServico_mascota" FromRole="reservaServico" ToRole="mascotas" />
+    <NavigationProperty Name="reservas" Relationship="Self.FK_reserva_reservaServicio" FromRole="reservaServico" ToRole="reserva" />
+    <NavigationProperty Name="servicio" Relationship="Self.FK_reservaServico_servico" FromRole="reservaServico" ToRole="servicios" />
+  </EntityType>
+  <EntityType Name="servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_servicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion_servicio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="imagen_servicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="calificaciones" Relationship="Self.FK_calificaciones_servicios" FromRole="servicios" ToRole="calificaciones" />
+    <NavigationProperty Name="reservaServicoes" Relationship="Self.FK_reservaServico_servico" FromRole="servicios" ToRole="reservaServico" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK_cliente_usuario" FromRole="usuarios" ToRole="cliente" />
+  </EntityType>
+  <Association Name="FK_calificaciones_cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="calificaciones" Type="Self.calificacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="calificaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_calificaciones_servicios">
+    <End Role="servicios" Type="Self.servicio" Multiplicity="1" />
+    <End Role="calificaciones" Type="Self.calificacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="calificaciones">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cliente_usuario">
+    <End Role="usuarios" Type="Self.usuario" Multiplicity="1" />
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mascotas_dueñoCL">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="mascotas" Type="Self.mascota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="mascotas">
+        <PropertyRef Name="id_dueño" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reserva_cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservaServico_mascota">
+    <End Role="mascotas" Type="Self.mascota" Multiplicity="1" />
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mascotas">
+        <PropertyRef Name="id_mascota" />
+      </Principal>
+      <Dependent Role="reservaServico">
+        <PropertyRef Name="id_mascota" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reserva_reservaServicio">
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservaServico">
+        <PropertyRef Name="id_reservaservicio" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="id_reservaservicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservaServico_servico">
+    <End Role="servicios" Type="Self.servicio" Multiplicity="1" />
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="reservaServico">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="petServicesEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="calificaciones" EntityType="Self.calificacione" />
+    <EntitySet Name="clientes" EntityType="Self.cliente" />
+    <EntitySet Name="mascotas" EntityType="Self.mascota" />
+    <EntitySet Name="reservas" EntityType="Self.reserva" />
+    <EntitySet Name="reservaServicoes" EntityType="Self.reservaServico" />
+    <EntitySet Name="servicios" EntityType="Self.servicio" />
+    <EntitySet Name="usuarios" EntityType="Self.usuario" />
+    <AssociationSet Name="FK_calificaciones_cliente" Association="Self.FK_calificaciones_cliente">
+      <End Role="cliente" EntitySet="clientes" />
+      <End Role="calificaciones" EntitySet="calificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_calificaciones_servicios" Association="Self.FK_calificaciones_servicios">
+      <End Role="servicios" EntitySet="servicios" />
+      <End Role="calificaciones" EntitySet="calificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cliente_usuario" Association="Self.FK_cliente_usuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cliente" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mascotas_dueñoCL" Association="Self.FK_mascotas_dueñoCL">
+      <End Role="cliente" EntitySet="clientes" />
+      <End Role="mascotas" EntitySet="mascotas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reserva_cliente" Association="Self.FK_reserva_cliente">
+      <End Role="cliente" EntitySet="clientes" />
+      <End Role="reserva" EntitySet="reservas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservaServico_mascota" Association="Self.FK_reservaServico_mascota">
+      <End Role="mascotas" EntitySet="mascotas" />
+      <End Role="reservaServico" EntitySet="reservaServicoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reserva_reservaServicio" Association="Self.FK_reserva_reservaServicio">
+      <End Role="reservaServico" EntitySet="reservaServicoes" />
+      <End Role="reserva" EntitySet="reservas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservaServico_servico" Association="Self.FK_reservaServico_servico">
+      <End Role="servicios" EntitySet="servicios" />
+      <End Role="reservaServico" EntitySet="reservaServicoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,10 @@
+C:\Users\Usuario\source\repos\ContratoAccesoDatos1\bin\Debug\ContratoAccesoDatos1.dll
+C:\Users\Usuario\source\repos\ContratoAccesoDatos1\bin\Debug\ContratoAccesoDatos1.pdb
+C:\Users\Usuario\source\repos\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.csprojAssemblyReference.cache
+C:\Users\Usuario\source\repos\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.dll
+C:\Users\Usuario\source\repos\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.pdb
+D:\Documentos\SW2\Protecto petServices\ContratoAccesoDatos1\bin\Debug\ContratoAccesoDatos1.dll
+D:\Documentos\SW2\Protecto petServices\ContratoAccesoDatos1\bin\Debug\ContratoAccesoDatos1.pdb
+D:\Documentos\SW2\Protecto petServices\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.csprojAssemblyReference.cache
+D:\Documentos\SW2\Protecto petServices\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.dll
+D:\Documentos\SW2\Protecto petServices\ContratoAccesoDatos1\obj\Debug\ContratoAccesoDatos1.pdb

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FEAECA9-101F-4D43-809A-25A7E0F349C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControladorApp1</RootNamespace>
+    <AssemblyName>ControladorApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementacion\ControladorCalificaciones.cs" />
+    <Compile Include="Implementacion\ControladorCliente.cs" />
+    <Compile Include="Implementacion\ControladorMascota.cs" />
+    <Compile Include="Implementacion\ControladorReserva.cs" />
+    <Compile Include="Implementacion\ControladorReservaServicio.cs" />
+    <Compile Include="Implementacion\ControladorServicio.cs" />
+    <Compile Include="Implementacion\ControladorUsuario.cs" />
+    <Compile Include="Mapeadores\MapeadorBaseControlador.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorCalificaciones.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorCliente.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorMascota.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorReserva.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorReservaServicio.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorServicio.cs" />
+    <Compile Include="Mapeadores\MapeadorControladorUsuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ContratoAccesoDatos1\ContratoAccesoDatos1.csproj">
+      <Project>{dd919eb3-defa-4196-be01-a219ea0a94fe}</Project>
+      <Name>ContratoAccesoDatos1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContratosControladorApp1\ContratosControladorApp1.csproj">
+      <Project>{a17e369f-0894-4010-b99c-f7b804ba81e0}</Project>
+      <Name>ContratosControladorApp1</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

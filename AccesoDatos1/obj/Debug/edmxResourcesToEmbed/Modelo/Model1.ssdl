@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="petServicesModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="calificaciones">
+    <Key>
+      <PropertyRef Name="id_calificacion" />
+    </Key>
+    <Property Name="id_calificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_servicio" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="calificacion" Type="int" Nullable="false" />
+    <Property Name="comentario" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="mascotas">
+    <Key>
+      <PropertyRef Name="id_mascota" />
+    </Key>
+    <Property Name="id_dueño" Type="int" Nullable="false" />
+    <Property Name="id_mascota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_mascota" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="raza" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pdf_canet" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="reserva">
+    <Key>
+      <PropertyRef Name="id_reservacion" />
+    </Key>
+    <Property Name="id_reservacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_reservaservicio" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+    <Property Name="total" Type="int" Nullable="false" />
+    <Property Name="estadoreserva" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="tipopago" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="factura" Type="nchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="reservaServico">
+    <Key>
+      <PropertyRef Name="id_reservaservicio" />
+    </Key>
+    <Property Name="id_reservaservicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_servicio" Type="int" Nullable="false" />
+    <Property Name="id_mascota" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="servicios">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_servicio" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion_servicio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="imagen_servicio" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_calificaciones_cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="calificaciones" Type="Self.calificaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="calificaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_calificaciones_servicios">
+    <End Role="servicios" Type="Self.servicios" Multiplicity="1" />
+    <End Role="calificaciones" Type="Self.calificaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="calificaciones">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cliente_usuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mascotas_dueñoCL">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="mascotas" Type="Self.mascotas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="mascotas">
+        <PropertyRef Name="id_dueño" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reserva_cliente">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reserva_reservaServicio">
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservaServico">
+        <PropertyRef Name="id_reservaservicio" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="id_reservaservicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservaServico_mascota">
+    <End Role="mascotas" Type="Self.mascotas" Multiplicity="1" />
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mascotas">
+        <PropertyRef Name="id_mascota" />
+      </Principal>
+      <Dependent Role="reservaServico">
+        <PropertyRef Name="id_mascota" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservaServico_servico">
+    <End Role="servicios" Type="Self.servicios" Multiplicity="1" />
+    <End Role="reservaServico" Type="Self.reservaServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="reservaServico">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="petServicesModel1StoreContainer">
+    <EntitySet Name="calificaciones" EntityType="Self.calificaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mascotas" EntityType="Self.mascotas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reservaServico" EntityType="Self.reservaServico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_calificaciones_cliente" Association="Self.FK_calificaciones_cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="calificaciones" EntitySet="calificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_calificaciones_servicios" Association="Self.FK_calificaciones_servicios">
+      <End Role="servicios" EntitySet="servicios" />
+      <End Role="calificaciones" EntitySet="calificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cliente_usuario" Association="Self.FK_cliente_usuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cliente" EntitySet="cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mascotas_dueñoCL" Association="Self.FK_mascotas_dueñoCL">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="mascotas" EntitySet="mascotas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reserva_cliente" Association="Self.FK_reserva_cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reserva_reservaServicio" Association="Self.FK_reserva_reservaServicio">
+      <End Role="reservaServico" EntitySet="reservaServico" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservaServico_mascota" Association="Self.FK_reservaServico_mascota">
+      <End Role="mascotas" EntitySet="mascotas" />
+      <End Role="reservaServico" EntitySet="reservaServico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservaServico_servico" Association="Self.FK_reservaServico_servico">
+      <End Role="servicios" EntitySet="servicios" />
+      <End Role="reservaServico" EntitySet="reservaServico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
